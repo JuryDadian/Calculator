@@ -3,6 +3,8 @@ package service;
 import entity.Operation;
 import storage.InMemoryOperationStorage;
 
+import java.util.List;
+
 
 public class Calculator {
 
@@ -44,4 +46,7 @@ public class Calculator {
         return a / b;
     }
 
+    public List<Operation> showHistory() {
+        return storage.findAll();
+    }
 }

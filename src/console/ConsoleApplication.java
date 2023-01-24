@@ -2,7 +2,6 @@ package console;
 
 import entity.Operation;
 import service.Calculator;
-import storage.InMemoryOperationStorage;
 
 
 public class ConsoleApplication {
@@ -10,7 +9,6 @@ public class ConsoleApplication {
     ConsoleReader reader = new ConsoleReader();
     ConsoleWriter writer = new ConsoleWriter();
     Calculator calculator = new Calculator();
-    InMemoryOperationStorage inMemoryOperationStorage = new InMemoryOperationStorage();
 
 
     public void run() {
@@ -31,7 +29,7 @@ public class ConsoleApplication {
                     writer.write("Result = " + result.getResult());
                     continue;
                 case 2:
-                    writer.write(inMemoryOperationStorage.findAll().toString());
+                    writer.write(calculator.showHistory().toString());
                     continue;
                 case 3:
                     return;
