@@ -6,9 +6,9 @@ import service.Calculator;
 
 public class ConsoleApplication {
 
-    ConsoleReader reader = new ConsoleReader();
-    ConsoleWriter writer = new ConsoleWriter();
-    Calculator calculator = new Calculator();
+    private final ConsoleReader reader = new ConsoleReader();
+    private final ConsoleWriter writer = new ConsoleWriter();
+    private final Calculator calculator = new Calculator();
 
 
     public void run() {
