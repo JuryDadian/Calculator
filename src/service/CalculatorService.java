@@ -1,31 +1,41 @@
 package service;
 
 import entity.Operation;
+import storage.InFileOperationStorage;
 import storage.InMemoryOperationStorage;
+import storage.OperationStorage;
 
 import java.util.List;
 
 
-public class Calculator {
-
-    private final InMemoryOperationStorage storage = new InMemoryOperationStorage();
+public class CalculatorService {
+    private final OperationStorage fileOperationStorage = new InFileOperationStorage();
+    private final OperationStorage memoryOperationStorage = new InMemoryOperationStorage();
     public Operation calculate(Operation operation) {
-      switch (operation.getType()){
-          case "sum":
+
+        String stringType = operation.getType().toUpperCase();
+        Type type = Type.valueOf(stringType);
+
+        switch (type){
+            case SUM:
               operation.setResult(methodSum(operation.getNum1(), operation.getNum2()));
-              storage.save(operation);
+              fileOperationStorage.save(operation);
+              memoryOperationStorage.save(operation);
               return operation;
-          case "sub":
+            case SUB:
               operation.setResult(methodSub(operation.getNum1(), operation.getNum2()));
-              storage.save(operation);
+              fileOperationStorage.save(operation);
+              memoryOperationStorage.save(operation);
               return operation;
-          case "mult":
+            case MUL:
               operation.setResult(methodMult(operation.getNum1(), operation.getNum2()));
-              storage.save(operation);
+              fileOperationStorage.save(operation);
+              memoryOperationStorage.save(operation);
               return operation;
-          case "div":
+            case DIV:
               operation.setResult(methodDiv(operation.getNum1(), operation.getNum2()));
-              storage.save(operation);
+              fileOperationStorage.save(operation);
+              memoryOperationStorage.save(operation);
               return operation;
       }
       return  operation;
@@ -47,6 +57,14 @@ public class Calculator {
     }
 
     public List<Operation> showHistory() {
-        return storage.findAll();
+        return memoryOperationStorage.findAll();
     }
+
+    private enum Type {
+        SUM,
+        SUB,
+        MUL,
+        DIV
+    }
+
 }

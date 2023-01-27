@@ -1,19 +1,21 @@
 package console;
 
 import entity.Operation;
-import service.Calculator;
+import service.CalculatorService;
+
+import java.util.List;
 
 
 public class ConsoleApplication {
 
     private final ConsoleReader reader = new ConsoleReader();
     private final ConsoleWriter writer = new ConsoleWriter();
-    private final Calculator calculator = new Calculator();
+    private final CalculatorService calculator = new CalculatorService();
 
 
     public void run() {
         while (true) {
-            writer.write("1 - Calculator, 2 - History, 3 - Exit");
+            writer.write("1 - CalculatorService, 2 - History, 3 - Exit");
             int i = reader.readInt();
 
             switch (i) {
@@ -29,7 +31,10 @@ public class ConsoleApplication {
                     writer.write("Result = " + result.getResult());
                     continue;
                 case 2:
-                    writer.write(calculator.showHistory().toString());
+                    List<Operation> operations = calculator.showHistory();
+                    operations.stream().forEach(
+                            (o) -> writer.write(o.toString())
+                    );
                     continue;
                 case 3:
                     return;

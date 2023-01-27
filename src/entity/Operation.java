@@ -50,7 +50,7 @@ public class Operation extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "entity.Operation{" +
+        return "Operation{" +
                 "num1=" + num1 +
                 ", num2=" + num2 +
                 ", result=" + result +

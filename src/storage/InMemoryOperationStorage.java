@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class InMemoryOperationStorage {
+public class InMemoryOperationStorage implements OperationStorage {
     private long incId = 1;
 
     private final List<Operation> operationList = new ArrayList<>();
