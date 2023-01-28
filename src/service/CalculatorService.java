@@ -28,7 +28,7 @@ public class CalculatorService {
               memoryOperationStorage.save(operation);
               return operation;
             case MUL:
-              operation.setResult(methodMult(operation.getNum1(), operation.getNum2()));
+              operation.setResult(methodMul(operation.getNum1(), operation.getNum2()));
               fileOperationStorage.save(operation);
               memoryOperationStorage.save(operation);
               return operation;
@@ -48,7 +48,7 @@ public class CalculatorService {
         return a - b;
     }
 
-    private static double methodMult(double a, double b) {
+    private static double methodMul(double a, double b) {
         return a * b;
     }
 

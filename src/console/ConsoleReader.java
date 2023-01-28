@@ -2,7 +2,7 @@ package console;
 
 import java.util.Scanner;
 
-public class ConsoleReader {
+public class ConsoleReader implements Reader{
 
     private Scanner scanner = new Scanner(System.in);
 
