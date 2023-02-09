@@ -5,5 +5,6 @@ public class Main {
 
         ConsoleApplication consoleApplication = new ConsoleApplication();
         consoleApplication.run();
+
     }
 }

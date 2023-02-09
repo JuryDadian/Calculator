@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class InMemoryOperationStorage implements OperationStorage {
+public class InMemoryOperationStorage {
     private long incId = 1;
 
-    private final List<Operation> operationList = new ArrayList<>();
+    private final List<Operation> operationListInMemory = new ArrayList<>();
 
     public void save(Operation operation) {
         operation.setId(incId++);
-        operationList.add(operation);
+        operationListInMemory.add(operation);
     }
     public List<Operation> findAll() {
-        return new ArrayList<>(operationList);
+        return new ArrayList<>(operationListInMemory);
     }
 }

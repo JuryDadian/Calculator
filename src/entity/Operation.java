@@ -2,12 +2,18 @@ package entity;
 
 public class Operation extends AbstractEntity {
 
+    private long id;
     private double num1;
     private double num2;
     private double result;
     private String type;
 
-    public Operation() {
+    public Operation(long id, double num1, double num2, double result, String type) {
+        this.id = id;
+        this.num1 = num1;
+        this.num2 = num2;
+        this.result = result;
+        this.type = type;
     }
 
     public Operation(double num1, double num2, String type) {

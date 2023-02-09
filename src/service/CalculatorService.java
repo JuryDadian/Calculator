@@ -3,14 +3,16 @@ package service;
 import entity.Operation;
 import storage.InFileOperationStorage;
 import storage.InMemoryOperationStorage;
-import storage.OperationStorage;
+import storage.JDBCOperationStorage;
 
 import java.util.List;
 
 
+
 public class CalculatorService {
-    private final OperationStorage fileOperationStorage = new InFileOperationStorage();
-    private final OperationStorage memoryOperationStorage = new InMemoryOperationStorage();
+    private final InFileOperationStorage fileOperationStorage = new InFileOperationStorage();
+    private final InMemoryOperationStorage memoryOperationStorage = new InMemoryOperationStorage();
+    private final JDBCOperationStorage jdbcOperationStorage = new JDBCOperationStorage();
     public Operation calculate(Operation operation) {
 
         String stringType = operation.getType().toUpperCase();
@@ -21,21 +23,25 @@ public class CalculatorService {
               operation.setResult(methodSum(operation.getNum1(), operation.getNum2()));
               fileOperationStorage.save(operation);
               memoryOperationStorage.save(operation);
+              jdbcOperationStorage.save(operation);
               return operation;
             case SUB:
               operation.setResult(methodSub(operation.getNum1(), operation.getNum2()));
               fileOperationStorage.save(operation);
               memoryOperationStorage.save(operation);
+              jdbcOperationStorage.save(operation);
               return operation;
             case MUL:
               operation.setResult(methodMul(operation.getNum1(), operation.getNum2()));
               fileOperationStorage.save(operation);
               memoryOperationStorage.save(operation);
+              jdbcOperationStorage.save(operation);
               return operation;
             case DIV:
               operation.setResult(methodDiv(operation.getNum1(), operation.getNum2()));
               fileOperationStorage.save(operation);
               memoryOperationStorage.save(operation);
+              jdbcOperationStorage.save(operation);
               return operation;
       }
       return  operation;
@@ -56,9 +62,14 @@ public class CalculatorService {
         return a / b;
     }
 
-    public List<Operation> showHistory() {
-        return memoryOperationStorage.findAll();
+    public List<Operation> showHistoryInMemory() {
+            return memoryOperationStorage.findAll();
     }
+
+    public List<Operation> showHistoryInJDBC() {
+        return jdbcOperationStorage.findAll();
+    }
+
 
     private enum Type {
         SUM,
@@ -66,5 +77,4 @@ public class CalculatorService {
         MUL,
         DIV
     }
-
 }
